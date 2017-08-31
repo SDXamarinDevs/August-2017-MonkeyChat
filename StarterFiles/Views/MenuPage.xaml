@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+                  Title="{Binding Title}"
+                  x:Name="view"
+                  x:Class="MonkeyChat.Views.MenuPage">
+
+    <MasterDetailPage.Master>
+        <ContentPage Title="Menu">
+            <ContentPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <OnPlatform.Platforms>
+                        <On Platform="iOS, Android, macOS" Value="hamburger.png" />
+                    </OnPlatform.Platforms>
+                </OnPlatform>
+            </ContentPage.Icon>
+            <ListView ItemsSource="{Binding Rooms}"
+                      IsRefreshing="{Binding IsBusy}">
+                <ListView.Behaviors>
+                    <behaviors:EventToCommandBehavior Command="{Binding RoomTappedCommand}" 
+                                                      EventName="ItemTapped"
+                                                      EventArgsParameterPath="Item" />
+                </ListView.Behaviors>
+                <ListView.Header>
+                    <Button Text="Add Room" Command="{Binding AddRoomCommand}" />
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Name}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ContentPage>
+    </MasterDetailPage.Master>
+</MasterDetailPage>

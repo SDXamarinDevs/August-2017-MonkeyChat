@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+          xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+          x:Class="MonkeyChat.Controls.OutgoingChatMessage">
+  <Grid ColumnSpacing="2" Padding="5">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="40"></ColumnDefinition>
+      <ColumnDefinition Width="*"></ColumnDefinition>
+      <ColumnDefinition Width="40"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+
+    </Grid.RowDefinitions>
+
+    <ffimageloading:CachedImage HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                LoadingPlaceholder="loading.png"
+                                ErrorPlaceholder="error.png" 
+                                DownsampleToViewSize="true"
+                                Aspect="AspectFit" 
+                                HeightRequest="35" 
+                                WidthRequest="35" 
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Source="{Binding FromEmail,Converter={StaticResource gravatarConverter}}">
+        <ffimageloading:CachedImage.Transformations>
+            <fftransformations:CircleTransformation/>
+        </ffimageloading:CachedImage.Transformations>
+    </ffimageloading:CachedImage>
+
+    <Frame Grid.Row="0"  Grid.Column="1">
+        <Frame.HasShadow>
+            <OnPlatform x:TypeArguments="x:Boolean">
+                <On Platform="iOS" Value="false"/>
+                <On Platform="Android" Value="true"/>
+            </OnPlatform>
+        </Frame.HasShadow>
+        <Frame.BackgroundColor>
+            <OnPlatform x:TypeArguments="Color">
+                <On Platform="iOS" Value="#F5F5F5"/>
+                <On Platform="Android" Value="White"/>
+            </OnPlatform>
+        </Frame.BackgroundColor>
+            <Label TextColor="Black"  Text="{Binding Message}" />
+    </Frame>
+    <Label Grid.Row="1"
+           FontSize="Micro"
+           Grid.Column="1"
+           HorizontalTextAlignment="End"
+           Text="{Binding CreatedAt, StringFormat='{0:MM/dd/yyyy hh:mm tt}'}"
+           TextColor="Gray" />
+    
+  </Grid>
+</ViewCell>

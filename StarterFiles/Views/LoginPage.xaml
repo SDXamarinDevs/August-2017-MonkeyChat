@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             Title="{Binding Title}"
+             x:Class="MonkeyChat.Views.LoginPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="300" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <BoxView BackgroundColor="{StaticResource PrimaryDark}" />
+        <ffimageloading:CachedImage HeightRequest="100"
+                                    WidthRequest="100"
+                                    DownsampleToViewSize="true"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center">
+            <ffimageloading:CachedImage.Source>
+                <OnPlatform x:TypeArguments="ImageSource">
+                    <On Platform="iOS" Value="AppIcon" />
+                    <On Platform="Android" Value="launchscreen_icon" />
+                </OnPlatform>
+            </ffimageloading:CachedImage.Source>
+            <ffimageloading:CachedImage.Transformations>
+                <fftransformations:CircleTransformation/>
+            </ffimageloading:CachedImage.Transformations>
+        </ffimageloading:CachedImage>
+
+        <StackLayout Grid.Row="1"
+                     Spacing="20"
+                     Padding="20">
+            <Entry Text="{Binding Model.Email}" 
+                   Placeholder="user@domain.com"
+                   HeightRequest="35" />
+            <Entry Text="{Binding Model.DisplayName}"
+                   Placeholder="Enter your Display Name"
+                   HeightRequest="35" />
+            <Button Text="Join"
+                    Command="{Binding LoginCommand}"
+                    BackgroundColor="{StaticResource Primary}"
+                    BorderColor="{StaticResource PrimaryDark}"
+                    BorderWidth="1"
+                    BorderRadius="15"
+                    TextColor="{StaticResource NavigationText}"
+                    HorizontalOptions="Center"
+                    Margin="0,30"
+                    WidthRequest="150" />
+        </StackLayout>
+
+        <BoxView BackgroundColor="{StaticResource PrimaryDarkTranslucent}"
+                 Grid.RowSpan="5"
+                 IsVisible="{Binding IsBusy}" />
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}"
+                           Grid.RowSpan="5" />
+    </Grid>
+</ContentPage>
