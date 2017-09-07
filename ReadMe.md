@@ -59,10 +59,6 @@ Make sure you have checked out the general [Meetup Prerequisites](https://github
 
   ![Configure App Service](images/ConfigureWebApp-03.png)
 
-
-
-  ![Configure App Service](images/ConfigureWebApp-07.png)
-
 </details>
 <p />
 
@@ -82,6 +78,7 @@ Create one or more tables as your team decides. For example create a Table named
   ![Configure App Service](images/ConfigureWebApp-05.png)
 
   ![Configure App Service](images/ConfigureWebApp-06.png)
+
 </details>
 <p />
 
