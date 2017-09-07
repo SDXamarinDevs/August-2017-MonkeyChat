@@ -84,7 +84,7 @@ Create one or more tables as your team decides. For example create a Table named
 
 ### Create the Mobile App Project
 
-Using the Dependency Injection Container of your choice create a new solution using the QuickStart Templates. You will want to add the AzureMobileClient to your solution. 
+Using the QuickStart Templates, create a new Xamarin Forms application using Prism and DryIoc. To do this open your CLI and enter the command `dotnet new prismforms -h`. This will list the full help file with all of the options available for the QuickStart Template. Be sure to take note of the Data Providers as you will want to include the `AzureMobileClient`. If you forget to do this you will lose out on all of the bootstrapping for both the Microsoft.Azure.Mobile.Client and AzureMobileClient.Helpers libraries.
 
 After opening your solution add
 
@@ -92,7 +92,7 @@ After opening your solution add
 - FFImageLoading Transformations
 - Xam.Plugins.Settings
 
-Add the Starter files to your project, and update your platform project to initialize FFImageLoading.
+Add the Starter files to your project, and update your platform project to initialize FFImageLoading. Note that the starter files in the Resources folder will need to be added to the Platform Project(s) not the shared .NET Standard library.
 
 <details>
   <summary>Platform Configurations</summary>
