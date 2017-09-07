@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             xmlns:controls="clr-namespace:MonkeyChat.Controls"
+             Title="{Binding Title}"
+             x:Class="MonkeyChat.Views.ChatPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <controls:ChatViewCellDataSelector x:Key="chatViewSelector" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ListView ItemsSource="{Binding Messages}"
+              ItemTemplate="{StaticResource chatViewSelector}"
+              HasUnevenRows="True"
+              IsPullToRefreshEnabled="true"
+              IsRefreshing="{Binding IsBusy}"
+              RefreshCommand="{Binding RefreshCommand}">
+        <ListView.Header>
+            <Label Text="{Binding Room.Name}"
+                   TextColor="{StaticResource NavigationText}"
+                   BackgroundColor="{StaticResource Primary}"/>
+        </ListView.Header>
+        <ListView.Footer>
+            <StackLayout Padding="15" BackgroundColor="{StaticResource PrimaryDark}">
+                <Editor Text="{Binding Text}"
+                        HeightRequest="60"
+                        />
+                <Button VerticalOptions="Center"
+                        Text="Send"
+                        TextColor="{StaticResource NavigationText}"
+                        Command="{Binding AddMessageCompositeCommand}" />
+            </StackLayout>
+        </ListView.Footer>
+    </ListView>
+</ContentPage>

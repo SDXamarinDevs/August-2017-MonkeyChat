@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:MonkeyChat.i18n;assembly=MonkeyChat"
+             Title="{Binding Title}"
+             BackgroundColor="{StaticResource PrimaryDark}"
+             x:Name="view"
+             x:Class="MonkeyChat.Views.SplashScreenPage">
+
+    <StackLayout HorizontalOptions="CenterAndExpand"
+                 VerticalOptions="CenterAndExpand">
+        <Image Source="codemonkey.jpg"
+               WidthRequest="200"/>
+        <ActivityIndicator Color="{StaticResource Accent}" 
+                           IsRunning="true"
+                           Margin="0,20" />
+        <Label Text="{i18n:Translate LoadingText}" 
+               TextColor="{StaticResource Accent}"
+               HorizontalOptions="Center" />
+    </StackLayout>
+
+</ContentPage>
